@@ -1,0 +1,1 @@
+docker run -dit -e server_address=home.djlactose.com --cap-add NET_ADMIN -p 51820:51820/UDP --rm --name wire djlactose/wireguard

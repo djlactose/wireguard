@@ -1,0 +1,10 @@
+[Interface]
+Address = 10.10.10.2/24
+DNS = <dns>
+PrivateKey = <client_private>
+
+[Peer]
+PublicKey = <server_public>
+Endpoint = <server_address>:51820
+AllowedIPS = 0.0.0.0/0, ::/0
+PersistentKeepalive = 25
