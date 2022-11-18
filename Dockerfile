@@ -8,8 +8,8 @@ ENV dns=8.8.8.8
 VOLUME /etc/wireguard/
 
 COPY run.sh /root/bin/
-COPY wg0.conf /etc/wireguard/
-COPY wg-client.sample /etc/wireguard
+COPY wg0.conf /root/
+COPY wg-client.sample /root/
 
 WORKDIR /root/bin
 

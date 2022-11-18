@@ -1,6 +1,7 @@
-if [ ! -f "/etc/wireguard/server_public.key" ]
+if [ ! -f "/etc/wireguard/wg0.conf" ]
 then
-    mkdir -p /etc/wireguard/
+    cp /root/wg0.conf /etc/wireguard/wg0.conf
+    cp /root/wg-client.sample /etc/wireguard/wg-client.sample
     wg genkey | tee /etc/wireguard/server_private.key | wg pubkey | tee /etc/wireguard/server_public.key
     sed -i "s~<server_public>~$(cat /etc/wireguard/server_public.key)~g" /etc/wireguard/wg-client.sample
     sed -i "s~<server_private>~$(cat /etc/wireguard/server_private.key)~g" /etc/wireguard/wg0.conf
@@ -17,7 +18,7 @@ then
     rm /etc/wireguard/server_private.key
     chmod 600 /etc/wireguard/ -R
     qrencode -t ansiutf8 -r /etc/wireguard/$date.conf
+    iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
 fi
-iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
 wg-quick up /etc/wireguard/wg0.conf
 sleep infinity
