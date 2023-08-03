@@ -14,8 +14,6 @@ then
     sed -i "s~<dns>~$dns~g" /etc/wireguard/$date.conf
     rm /etc/wireguard/client_private.key
     rm /etc/wireguard/client_public.key
-    rm /etc/wireguard/server_public.key
-    rm /etc/wireguard/server_private.key
     chmod 600 /etc/wireguard/ -R
     qrencode -t ansiutf8 -r /etc/wireguard/$date.conf
     iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
