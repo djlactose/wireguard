@@ -14,6 +14,6 @@ COPY wg-client.sample /root/
 
 WORKDIR /root/bin
 
-RUN apk add --no-cache wireguard-tools iptables libqrencode
+RUN apk add --no-cache wireguard-tools iptables libqrencode-tools
 
 ENTRYPOINT /root/bin/run.sh

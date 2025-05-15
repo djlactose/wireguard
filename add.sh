@@ -12,8 +12,12 @@ sed -i "s~<dns>~$dns~g" /etc/wireguard/$date.conf
 rm /etc/wireguard/client_private.key
 rm /etc/wireguard/client_public.key
 qrencode -t ansiutf8 -r /etc/wireguard/$date.conf
-wg set wg0 peer "$PublicKey" allowed-ips 10.10.10.$NextIP/32
-ip -4 route add 10.10.10.$NextIP/32 dev wg0
+echo "***Config File Start***"
+cat /etc/wireguard/$date.conf
+echo "***Config File End***\n\n"
+wg addconf wg0 <(wg-quick strip wg0)
+#wg set wg0 peer "$PublicKey" allowed-ips 10.10.10.$NextIP/32
+#ip -4 route add 10.10.10.$NextIP/32 dev wg0
 #iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
 #wg-quick up /etc/wireguard/wg0.conf
 #sleep infinity

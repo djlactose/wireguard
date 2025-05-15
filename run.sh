@@ -16,7 +16,7 @@ then
     rm /etc/wireguard/client_public.key
     chmod 600 /etc/wireguard/ -R
     qrencode -t ansiutf8 -r /etc/wireguard/$date.conf
-    iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
+    #iptables -I FORWARD -i wg0 -o wg0 -j ACCEPT
 fi
 wg-quick up /etc/wireguard/wg0.conf
 sleep infinity
